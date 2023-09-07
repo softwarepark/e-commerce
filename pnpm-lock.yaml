@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   "@types/node":
-    specifier: 20.6.0
-    version: 20.6.0
+    specifier: 20.5.9
+    version: 20.5.9
   "@types/react":
     specifier: 18.2.21
     version: 18.2.21
