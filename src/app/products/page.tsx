@@ -48,7 +48,7 @@ const products: ProductItemType[] = [
 const Products = () => {
   return (
     <section className="mx-auto flex justify-center px-5 my-7">
-      <ProductList products={products} />;
+      <ProductList products={products} />;<p>s</p>
     </section>
   );
 };
