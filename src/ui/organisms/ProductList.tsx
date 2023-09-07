@@ -1,6 +1,7 @@
 import React from "react";
-import ProductListItem from "@/ui/molecules/ProductListItem";
+
 import { ProductItemType } from "../types";
+import ProductListItem from "../molecules/ProductListItem";
 
 const ProductList = ({ products }: { products: ProductItemType[] }) => {
   return (
