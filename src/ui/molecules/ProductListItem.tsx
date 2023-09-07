@@ -10,7 +10,7 @@ type ProdcutItemListProps = {
 
 const ProductListItem = ({ product }: ProdcutItemListProps) => {
   return (
-    <li>
+    <li data-testid="products-list">
       <article className="bg-white w-72">
         <ProductCoverImage
           src={product.coverImage.src}
