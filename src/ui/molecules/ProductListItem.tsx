@@ -16,6 +16,7 @@ const ProductListItem = ({ product }: ProdcutItemListProps) => {
           src={product.coverImage.src}
           alt={product.coverImage.alt}
         />
+        <p></p>
         <ProductListItemDescription product={product} />
       </article>
     </li>
