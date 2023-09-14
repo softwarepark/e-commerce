@@ -8,7 +8,7 @@ type ProductSingleDescriptionProps = {
 };
 
 const ProductSingleDescription = ({
-  product: { name, price, category },
+  product: { name, price, category, description },
 }: ProductSingleDescriptionProps) => {
   return (
     <div className="flex flex-col gap-y-3">
@@ -19,6 +19,7 @@ const ProductSingleDescription = ({
       <p>
         <span className="sr-only">Cena:</span> {formatMoney(price / 100)}
       </p>
+      <p>{description}</p>
     </div>
   );
 };

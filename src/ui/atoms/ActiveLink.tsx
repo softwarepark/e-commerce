@@ -5,19 +5,19 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import type { Route } from "next";
 
-const ActiveLink = ({
-  href,
-  children,
-}: {
-  href: Route;
+type ActiveLinkProps = {
   children: React.ReactNode;
-}) => {
+  href: Route;
+};
+
+const ActiveLink = ({ href, children }: ActiveLinkProps) => {
   const pathname = usePathname();
   const activeLink = pathname === href;
 
   return (
     <Link
       href={href}
+      prefetch={true}
       className={clsx(`text-blue-400`, activeLink && `text-blue-700 underline`)}
     >
       {children}

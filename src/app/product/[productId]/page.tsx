@@ -3,8 +3,28 @@ import ProductSingleDescription from "@/ui/atoms/ProductSingleDescription";
 import ProductSingleImage from "@/ui/atoms/ProductSingleImage";
 import LoadingItems from "@/ui/molecules/LoadingItems";
 import SuggestedProductsList from "@/ui/organisms/SuggestedProductsList";
+import formatMoney from "@/utils";
+import { Metadata } from "next";
 import { Suspense } from "react";
-import ProductListItemDescription from "@/ui/atoms/ProductListItemDescription";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { productId: string };
+}): Promise<Metadata> => {
+  const product = await getProductById(params.productId);
+  return {
+    title: `${product.name} - ${formatMoney(
+      product.price / 100
+    )} - Sklep internetowy`,
+    description: `${product.description}`,
+    openGraph: {
+      title: `${product.name} - ${formatMoney(product.price / 100)}`,
+      description: `${product.description}`,
+      images: [product.coverImage.src],
+    },
+  };
+};
 
 export default async function SingleProduct({
   params,
