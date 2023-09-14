@@ -21,7 +21,11 @@ export const generateMetadata = async ({
     openGraph: {
       title: `${product.name} - ${formatMoney(product.price / 100)}`,
       description: `${product.description}`,
-      images: [product.coverImage.src],
+      images: {
+        url: `${product.coverImage.src}`,
+        width: 800,
+        height: 600,
+      },
     },
   };
 };
