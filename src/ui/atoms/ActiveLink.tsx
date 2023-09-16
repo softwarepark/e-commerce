@@ -5,22 +5,35 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import type { Route } from "next";
 
-type ActiveLinkProps = {
+type ActiveLinkProps<T extends string> = {
+  href: Route<T>;
   children: React.ReactNode;
-  href: Route;
+  exact?: boolean;
+  className?: string;
+  activeClassName?: string;
 };
 
-const ActiveLink = ({ href, children }: ActiveLinkProps) => {
+const ActiveLink = <T extends string>({
+  href,
+  children,
+  exact = false,
+  className = "text-slate-500 hover:text-slate-700 hover:border-gray-300 border-b-transparent ",
+  activeClassName = "border-blue-500 border-b-2",
+}: ActiveLinkProps<T>) => {
   const pathname = usePathname();
-  const activeClassName = pathname === href;
+
+  const isActive = exact
+    ? pathname === href
+    : pathname.startsWith(href) &&
+      (pathname[href.length] === "/" || pathname.length === href.length);
 
   return (
     <Link
       href={href}
       prefetch={true}
       className={clsx(
-        `text-neutral-900 h-full flex items-center`,
-        activeClassName && `border-b-2 border-b-blue-600`
+        `flex h-full w-full min-w-[3rem] items-center justify-center px-1 pt-1 text-center text-sm font-medium border-b-2`,
+        isActive ? activeClassName : className
       )}
     >
       {children}
