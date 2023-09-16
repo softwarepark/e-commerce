@@ -12,13 +12,16 @@ type ActiveLinkProps = {
 
 const ActiveLink = ({ href, children }: ActiveLinkProps) => {
   const pathname = usePathname();
-  const activeLink = pathname === href;
+  const activeClassName = pathname === href;
 
   return (
     <Link
       href={href}
       prefetch={true}
-      className={clsx(`text-blue-400`, activeLink && `text-blue-700 underline`)}
+      className={clsx(
+        `text-neutral-900 h-full flex items-center`,
+        activeClassName && `border-b-2 border-b-blue-600`
+      )}
     >
       {children}
     </Link>
