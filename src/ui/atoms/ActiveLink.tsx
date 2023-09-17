@@ -24,8 +24,9 @@ const ActiveLink = <T extends string>({
 
   const isActive = exact
     ? pathname === href
-    : pathname.startsWith(href) &&
-      (pathname[href.length] === "/" || pathname.length === href.length);
+    : pathname.startsWith(href) && pathname.length === href.length;
+
+  console.log(pathname, href, isActive);
 
   return (
     <Link
