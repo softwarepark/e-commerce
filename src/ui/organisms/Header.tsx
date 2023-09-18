@@ -1,5 +1,6 @@
 import React from "react";
 import ActiveLink from "../atoms/ActiveLink";
+import { Route } from "next";
 
 export const Header = () => {
   return (
@@ -9,10 +10,14 @@ export const Header = () => {
           <nav className="scrolling-touch scroll-shadows -mx-2 flex overflow-x-scroll lg:mx-0 lg:h-16 lg:overflow-x-auto">
             <ul className="flex h-16 max-w-full space-x-8 whitespace-nowrap lg:px-8">
               <li>
-                <ActiveLink href="/">Home</ActiveLink>
+                <ActiveLink exact={false} href="/">
+                  Home
+                </ActiveLink>
               </li>
               <li>
-                <ActiveLink href="/products/1">Products</ActiveLink>
+                <ActiveLink exact={false} href={"/products/1" as Route}>
+                  All
+                </ActiveLink>
               </li>
             </ul>
           </nav>
