@@ -14,12 +14,12 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const product = await getProductById(params.productId);
   return {
-    title: `${product.name} - ${formatMoney(
+    title: `${product.title} - ${formatMoney(
       product.price / 100
     )} - Sklep internetowy`,
     description: `${product.description}`,
     openGraph: {
-      title: `${product.name} - ${formatMoney(product.price / 100)}`,
+      title: `${product.title} - ${formatMoney(product.price / 100)}`,
       description: `${product.description}`,
       images: [product.coverImage.src],
     },

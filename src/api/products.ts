@@ -19,7 +19,7 @@ const productResponseItemToProductItemType = (
 ): ProductItemType => {
   return {
     id: product.id,
-    name: product.title,
+    title: product.title,
     price: product.price,
     category: product.category,
     description: product.description,
