@@ -7,12 +7,12 @@ type ProductListItemDescriptionProps = {
 };
 
 const ProductListItemDescription = ({
-  product: { name, price, category },
+  product: { title, price, category },
 }: ProductListItemDescriptionProps) => {
   return (
     <div className="px-2 py-4">
       <div className="flex justify-between">
-        <h3>{name}</h3>
+        <h3>{title}</h3>
         <p>
           <span className="sr-only">Cena:</span> {formatMoney(price / 100)}
         </p>
