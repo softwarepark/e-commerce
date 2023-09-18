@@ -8,11 +8,11 @@ type ProductSingleDescriptionProps = {
 };
 
 const ProductSingleDescription = ({
-  product: { name, price, category, description },
+  product: { title, price, category, description },
 }: ProductSingleDescriptionProps) => {
   return (
     <div className="flex flex-col gap-y-3">
-      <h1 className="md:text-[2vw] text-base">{name}</h1>
+      <h1 className="md:text-[2vw] text-base">{title}</h1>
       <h3 className="px-2 py-1 bg-orange-400 text-white text-xs w-fit rounded-lg">
         {category}
       </h3>
