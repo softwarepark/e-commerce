@@ -15,19 +15,23 @@ export const Pagination = ({
   const activeClassName = "border-t-2 border-t-blue-500 border-b-";
 
   return (
-    <div className="flex justify-center space-x-2 w-fit mx-auto mt-12">
+    <ul
+      className="flex justify-center space-x-2 w-fit mx-auto mt-12"
+      aria-label="pagination"
+    >
       {[...Array(paginationLenght)].map((_, pageNumber) => (
-        <ActiveLink
-          key={pageNumber}
-          href={("/products/" + (pageNumber + 1)) as Route}
-          className={clsx(
-            className,
-            currentPagination == pageNumber + 1 && activeClassName
-          )}
-        >
-          {pageNumber + 1}
-        </ActiveLink>
+        <li key={pageNumber}>
+          <ActiveLink
+            href={("/products/" + (pageNumber + 1)) as Route}
+            className={clsx(
+              className,
+              currentPagination == pageNumber + 1 && activeClassName
+            )}
+          >
+            {pageNumber + 1}
+          </ActiveLink>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
