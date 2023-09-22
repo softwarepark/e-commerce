@@ -2,15 +2,15 @@ import Image from "next/image";
 import React from "react";
 
 type ProductCoverImageProps = {
-  src: string;
+  url: string;
   alt?: string;
 };
 
-const ProductCoverImage = ({ src, alt }: ProductCoverImageProps) => {
+const ProductCoverImage = ({ url, alt }: ProductCoverImageProps) => {
   return (
     <div className="overflow-hidden w-72 flex items-center justify-center">
       <Image
-        src={src}
+        src={url}
         width={300}
         height={300}
         alt={alt || "Product cover image"}

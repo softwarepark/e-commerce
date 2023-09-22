@@ -1,21 +1,22 @@
 import React from "react";
 import { ProductItemType } from "../types";
+import Link from "next/link";
+import formatMoney from "@/utils";
 import ProductCoverImage from "../atoms/ProductCoverImage";
 import ProductListItemDescription from "../atoms/ProductListItemDescription";
-import Link from "next/link";
 
 type ProdcutItemListProps = {
   product: ProductItemType;
 };
 
-const ProductListItem = ({ product }: ProdcutItemListProps) => {
+const ProductListItem = async ({ product }: ProdcutItemListProps) => {
   return (
     <li>
       <Link href={`/product/${product.id}`}>
-        <article className="bg-white w-72">
+        <article className="bg-white flex flex-col items-center">
           <ProductCoverImage
-            src={product.coverImage.src}
-            alt={product.coverImage.alt}
+            url={product.images[0].url}
+            alt={product.images[0].alt}
           />
           <ProductListItemDescription product={product} />
         </article>
