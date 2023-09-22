@@ -1,11 +1,11 @@
-type Images = {
+export type Images = {
   url: string;
   alt?: string;
   height: number;
   width: number;
 };
 
-type Categories = {
+export type Categories = {
   name: string;
   id: string;
   slug: string;

@@ -14,7 +14,7 @@ const ProductListItemDescription = ({
       <div className="flex justify-between">
         <h3>{name}</h3>
         <p>
-          <span className="sr-only">Cena:</span> {formatMoney(price / 100)}
+          <span className="sr-only">Cena:</span> {formatMoney(price)}
         </p>
       </div>
       <ul className="flex">
