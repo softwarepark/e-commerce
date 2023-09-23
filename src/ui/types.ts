@@ -14,9 +14,17 @@ export type Categories = {
 export type ProductItemType = {
   id: string;
   name: string;
+  slug: string;
   descriptionShort: string;
   images: Images[];
   price: number;
   categories: Categories[];
   promotion?: number;
+};
+
+export type CategoriesItemType = {
+  id: string;
+  name: string;
+  slug: string;
+  image: Images;
 };

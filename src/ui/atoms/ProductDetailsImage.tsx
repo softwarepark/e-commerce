@@ -15,19 +15,17 @@ export const ProductDetailsImage = ({ images }: { images: Images[] }) => {
         modules={[Navigation, Pagination]}
         spaceBetween={0}
         slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         navigation
         pagination={{ clickable: true }}
       >
-        {images.map((image) => (
-          <SwiperSlide>
+        {images.map((image, index) => (
+          <SwiperSlide key={index}>
             <Image
               src={image.url}
               width={image.width}
               height={image.height}
               alt={image.alt || "Zdjęcie produktu"}
-              className="object-contain h-full"
+              className="object-contain h-full mx-auto"
             />
           </SwiperSlide>
         ))}

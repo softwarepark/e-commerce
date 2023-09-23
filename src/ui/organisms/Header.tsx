@@ -9,7 +9,7 @@ export const Header = () => {
       <div className="mx-auto container px-2 sm:px-4 lg:px-8">
         <div className="flex justify-between gap-x-4 flex-row items-center pb-0">
           <nav className="scrolling-touch scroll-shadows flex overflow-x-scrolllg:h-16 lg:overflow-x-auto">
-            <ul className="flex h-16 max-w-full space-x-8 whitespace-nowrap">
+            <ul className="flex h-16 max-w-full space-x-4 whitespace-nowrap">
               <li>
                 <ActiveLink exact={false} href="/">
                   Home
@@ -18,6 +18,11 @@ export const Header = () => {
               <li>
                 <ActiveLink exact={false} href={"/products/1" as Route}>
                   All
+                </ActiveLink>
+              </li>
+              <li>
+                <ActiveLink exact={false} href={"/categories" as Route}>
+                  Categories
                 </ActiveLink>
               </li>
             </ul>

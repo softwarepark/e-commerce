@@ -1,4 +1,4 @@
-import formatMoney from "@/utils";
+import { formatMoney } from "@/utils";
 import { ProductItemType } from "../types";
 import { ProductDetailsImage } from "../atoms/ProductDetailsImage";
 

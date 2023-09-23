@@ -1,6 +1,6 @@
 import React from "react";
 import { ProductItemType } from "../types";
-import formatMoney from "../../utils";
+import { formatMoney } from "../../utils";
 
 type ProductListItemDescriptionProps = {
   product: ProductItemType;

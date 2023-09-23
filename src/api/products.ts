@@ -1,5 +1,4 @@
-import { ProductItemType } from "@/ui/types";
-import { type } from "os";
+import { ProductItemType, CategoriesItemType } from "@/ui/types";
 
 type GraphQLResponse<T> =
   | { data?: undefined; errors: { message: string }[] }
@@ -10,6 +9,9 @@ type ProductsGraphQLResponseProps = {
 };
 type ProductGraphQLResponseProps = {
   product: ProductItemType;
+};
+type CategoriesGraphQLResponseProps = {
+  categories: CategoriesItemType[];
 };
 
 export const getAllProducts = async (): Promise<ProductItemType[]> => {
@@ -25,6 +27,7 @@ export const getAllProducts = async (): Promise<ProductItemType[]> => {
           id
           name
           descriptionShort
+          slug
           images {
             url
             alt
@@ -56,7 +59,7 @@ export const getAllProducts = async (): Promise<ProductItemType[]> => {
 };
 
 export const getSingleProductById = async (
-  productId: ProductItemType["id"]
+  id: ProductItemType["id"]
 ): Promise<ProductItemType> => {
   const res = await fetch(`${process.env.HYGRAPH_API_URL}`, {
     method: "POST",
@@ -66,11 +69,12 @@ export const getSingleProductById = async (
     },
     body: JSON.stringify({
       query: `
-      query GetSingleProductById($productId: ID) {
-        product(where: {id: $productId}, locales:[en]) {
+      query GetSingleProductById($id: ID) {
+        product(where: {id: $id}, locales:[en]) {
           id
           name
           descriptionShort
+          slug
           images {
             url
             alt
@@ -86,7 +90,7 @@ export const getSingleProductById = async (
           promotion
         }
     }`,
-      variables: { productId },
+      variables: { id },
     }),
   });
 
@@ -100,4 +104,42 @@ export const getSingleProductById = async (
   const product = graphQLResponse.data.product;
 
   return product;
+};
+
+export const getAllCategories = async (): Promise<CategoriesItemType[]> => {
+  const res = await fetch(`${process.env.HYGRAPH_API_URL}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.HYGRAPH_API_KEY}`,
+    },
+    body: JSON.stringify({
+      query: `
+      query getAllCategories{
+        categories{
+          id
+          name
+          slug
+          image{
+            url
+            alt
+            width
+            height
+          }
+        }
+      }
+      `,
+    }),
+  });
+
+  const graphQLResponse =
+    (await res.json()) as GraphQLResponse<CategoriesGraphQLResponseProps>;
+
+  if (graphQLResponse.errors) {
+    throw new Error(graphQLResponse.errors[0].message);
+  }
+
+  const categories = graphQLResponse.data.categories;
+
+  return categories;
 };
