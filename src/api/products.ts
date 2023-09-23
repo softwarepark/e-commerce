@@ -1,50 +1,145 @@
-import { ProductItemType } from "@/ui/types";
+import { ProductItemType, CategoriesItemType } from "@/ui/types";
 
-type ProductResponseItem = {
-  id: string;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-  image: string;
-  longDescription: string;
+type GraphQLResponse<T> =
+  | { data?: undefined; errors: { message: string }[] }
+  | { data: T; errors?: undefined };
+
+type ProductsGraphQLResponseProps = {
+  products: ProductItemType[];
+};
+type ProductGraphQLResponseProps = {
+  product: ProductItemType;
+};
+type CategoriesGraphQLResponseProps = {
+  categories: CategoriesItemType[];
 };
 
-const productResponseItemToProductItemType = (
-  product: ProductResponseItem
-): ProductItemType => {
-  return {
-    id: product.id,
-    title: product.title,
-    price: product.price,
-    category: product.category,
-    description: product.description,
-    coverImage: {
-      src: product.image,
-      alt: product.title,
+export const getAllProducts = async (): Promise<ProductItemType[]> => {
+  const res = await fetch(`${process.env.HYGRAPH_API_URL}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.HYGRAPH_API_KEY}`,
     },
-  };
-};
+    body: JSON.stringify({
+      query: `query GetAllProducts{
+        products(first: 30, locales: [en]){
+          id
+          name
+          descriptionShort
+          slug
+          images {
+            url
+            alt
+            height
+            width
+          }
+          price
+          categories {
+            name
+            id
+            slug
+          }
+          promotion
+        }
+      }`,
+    }),
+  });
 
-export const getProductsList = async (lenght: number, offset: number) => {
-  const res = await fetch(
-    `https://naszsklep-api.vercel.app/api/products?take=${lenght}&offset=${offset}`
-  );
-  const productsResponse = (await res.json()) as ProductResponseItem[];
-  const products = productsResponse.map((product) =>
-    productResponseItemToProductItemType(product)
-  );
+  const graphQLResponse =
+    (await res.json()) as GraphQLResponse<ProductsGraphQLResponseProps>;
+
+  if (graphQLResponse.errors) {
+    throw new Error(graphQLResponse.errors[0].message);
+  }
+
+  const products = graphQLResponse.data.products;
+
   return products;
 };
 
-export const getProductById = async (id: ProductResponseItem["id"]) => {
-  const res = await fetch(
-    `https://naszsklep-api.vercel.app/api/products/${id}`
-  );
-  const productResponse = (await res.json()) as ProductResponseItem;
-  return productResponseItemToProductItemType(productResponse);
+export const getSingleProductById = async (
+  id: ProductItemType["id"]
+): Promise<ProductItemType> => {
+  const res = await fetch(`${process.env.HYGRAPH_API_URL}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.HYGRAPH_API_KEY}`,
+    },
+    body: JSON.stringify({
+      query: `
+      query GetSingleProductById($id: ID) {
+        product(where: {id: $id}, locales:[en]) {
+          id
+          name
+          descriptionShort
+          slug
+          images {
+            url
+            alt
+            height
+            width
+          }
+          price
+          categories {
+            name
+            id
+            slug
+          }
+          promotion
+        }
+    }`,
+      variables: { id },
+    }),
+  });
+
+  const graphQLResponse =
+    (await res.json()) as GraphQLResponse<ProductGraphQLResponseProps>;
+
+  if (graphQLResponse.errors) {
+    throw new Error(graphQLResponse.errors[0].message);
+  }
+
+  const product = graphQLResponse.data.product;
+
+  return product;
+};
+
+export const getAllCategories = async (): Promise<CategoriesItemType[]> => {
+  const res = await fetch(`${process.env.HYGRAPH_API_URL}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.HYGRAPH_API_KEY}`,
+    },
+    body: JSON.stringify({
+      query: `
+      query getAllCategories{
+        categories{
+          id
+          name
+          slug
+          image{
+            url
+            alt
+            width
+            height
+          }
+        }
+      }
+      `,
+    }),
+  });
+
+  const graphQLResponse =
+    (await res.json()) as GraphQLResponse<CategoriesGraphQLResponseProps>;
+
+  if (graphQLResponse.errors) {
+    throw new Error(graphQLResponse.errors[0].message);
+  }
+
+  const categories = graphQLResponse.data.categories;
+
+  return categories;
 };

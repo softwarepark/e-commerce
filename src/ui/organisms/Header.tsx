@@ -1,14 +1,15 @@
 import React from "react";
 import ActiveLink from "../atoms/ActiveLink";
 import { Route } from "next";
+import { Card } from "@/ui/molecules/Card";
 
 export const Header = () => {
   return (
-    <header className="sticky top-0 bg-white border-b bg-opacity-60 backdrop-blur-lg">
-      <div className="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
-        <div className="flex flex-col justify-between gap-y-4 pb-4 lg:flex-row lg:items-center lg:pb-0">
-          <nav className="scrolling-touch scroll-shadows -mx-2 flex overflow-x-scroll lg:mx-0 lg:h-16 lg:overflow-x-auto">
-            <ul className="flex h-16 max-w-full space-x-8 whitespace-nowrap lg:px-8">
+    <header className="sticky top-0 bg-white border-b bg-opacity-60 backdrop-blur-lg z-50">
+      <div className="mx-auto container px-2 sm:px-4 lg:px-8">
+        <div className="flex justify-between gap-x-4 flex-row items-center pb-0">
+          <nav className="scrolling-touch scroll-shadows flex overflow-x-scrolllg:h-16 lg:overflow-x-auto">
+            <ul className="flex h-16 max-w-full space-x-4 whitespace-nowrap">
               <li>
                 <ActiveLink exact={false} href="/">
                   Home
@@ -19,8 +20,14 @@ export const Header = () => {
                   All
                 </ActiveLink>
               </li>
+              <li>
+                <ActiveLink exact={false} href={"/categories" as Route}>
+                  Categories
+                </ActiveLink>
+              </li>
             </ul>
           </nav>
+          <Card />
         </div>
       </div>
     </header>

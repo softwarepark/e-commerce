@@ -8,7 +8,7 @@ type ProductCoverImageProps = {
 
 const ProductSingleImage = ({ src, alt }: ProductCoverImageProps) => {
   return (
-    <div className="bg-white overflow-hidden md:w-1/2 w-full aspect-square flex items-center justify-center relative">
+    <div className="bg-white overflow-hidden w-full aspect-square flex items-center justify-center relative">
       <Image
         src={src}
         fill
