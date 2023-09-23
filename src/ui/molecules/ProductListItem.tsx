@@ -1,7 +1,7 @@
 import React from "react";
 import { ProductItemType } from "../types";
 import Link from "next/link";
-import formatMoney from "@/utils";
+import { formatMoney } from "@/utils";
 import ProductCoverImage from "../atoms/ProductCoverImage";
 import ProductListItemDescription from "../atoms/ProductListItemDescription";
 
