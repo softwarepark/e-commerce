@@ -6,13 +6,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import Image from "next/image";
 
-const slider = [
-  { title: "Slide 1" },
-  { title: "Slide 2" },
-  { title: "Slide 3" },
-  { title: "Slide 4" },
-];
+const slider = [{ url: "/slide.jpg" }, { url: "/slide2.jpg" }];
 
 export const SwiperHome = () => {
   return (
@@ -24,7 +20,7 @@ export const SwiperHome = () => {
         direction={"vertical"}
         pagination={{ clickable: true }}
         autoplay={{
-          delay: 2000,
+          delay: 2500,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}
@@ -32,8 +28,8 @@ export const SwiperHome = () => {
       >
         {slider.map((slide) => (
           <SwiperSlide>
-            <div className="flex items-center justify-center w-full h-full bg-neutral-100">
-              <h1>{slide.title}</h1>
+            <div className="flex items-center justify-center w-full h-full">
+              <Image src={slide.url} alt="" fill className="object-cover" />
             </div>
           </SwiperSlide>
         ))}

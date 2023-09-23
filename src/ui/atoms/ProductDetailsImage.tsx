@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 export const ProductDetailsImage = ({ images }: { images: Images[] }) => {
   return (
-    <div className="relative flex h-96">
+    <div className="relative flex h-96 lg:h-[36rem]">
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={0}
