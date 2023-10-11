@@ -11,7 +11,6 @@ export default async function Home() {
 
   return (
     <>
-      <SwiperHome />
       <SectionProductList
         title="Popular products"
         products={popularProduct}

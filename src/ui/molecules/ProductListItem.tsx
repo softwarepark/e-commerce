@@ -1,12 +1,12 @@
 import React from "react";
-import { ProductItemType } from "../types";
 import Link from "next/link";
 import { formatMoney } from "@/utils";
 import ProductCoverImage from "../atoms/ProductCoverImage";
 import ProductListItemDescription from "../atoms/ProductListItemDescription";
+import { ProductGetProductFragment } from "@/gql/graphql";
 
 type ProdcutItemListProps = {
-  product: ProductItemType;
+  product: ProductGetProductFragment;
 };
 
 const ProductListItem = async ({ product }: ProdcutItemListProps) => {
@@ -14,10 +14,12 @@ const ProductListItem = async ({ product }: ProdcutItemListProps) => {
     <li>
       <Link href={`/product/${product.id}`}>
         <article className="bg-white flex flex-col items-center">
-          <ProductCoverImage
-            url={product.images[0].url}
-            alt={product.images[0].alt}
-          />
+          {product.images[0] && (
+            <ProductCoverImage
+              url={product.images[0].url}
+              alt={product.images[0].alt || ""}
+            />
+          )}
           <ProductListItemDescription product={product} />
         </article>
       </Link>

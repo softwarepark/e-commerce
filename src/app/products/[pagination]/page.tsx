@@ -19,7 +19,7 @@ export default async function Products({
         products={products}
         numberOfItem={8}
       />
-      <Pagination paginationLenght={10} currentPagination={0} />
+      <Pagination paginationLenght={3} currentPagination={0} />
     </section>
   );
 }

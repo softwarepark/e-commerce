@@ -1,0 +1,14 @@
+fragment ProductGetProduct on Product {
+  id
+  name
+  descriptionShort
+  slug
+  ...ProductImage
+  price
+  categories {
+    name
+    id
+    slug
+  }
+  promotion
+}
