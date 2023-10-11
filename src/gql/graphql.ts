@@ -10859,7 +10859,10 @@ export type ProductGetSingleByIdQuery = { product?: { id: string, name: string, 
 
 export type ProductImageFragment = { images: Array<{ url: string, alt?: string | null, height?: number | null, width?: number | null }> };
 
-export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
+export type ProductsGetListQueryVariables = Exact<{
+  count?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+}>;
 
 
 export type ProductsGetListQuery = { products: Array<{ id: string, name: string, descriptionShort: string, slug: string, price?: number | null, promotion?: number | null, categories: Array<{ name: string, id: string, slug: string }>, images: Array<{ url: string, alt?: string | null, height?: number | null, width?: number | null }> }> };
@@ -10963,7 +10966,7 @@ export const ProductGetProductFragmentDoc = new TypedDocumentString(`
 }`, {"fragmentName":"ProductGetProduct"}) as unknown as TypedDocumentString<ProductGetProductFragment, unknown>;
 export const CategoriesGetListDocument = new TypedDocumentString(`
     query CategoriesGetList {
-  categories {
+  categories(orderBy: name_ASC) {
     ...CategoryGetCateogry
   }
 }
@@ -11078,8 +11081,8 @@ fragment ProductImage on Product {
   }
 }`) as unknown as TypedDocumentString<ProductGetSingleByIdQuery, ProductGetSingleByIdQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
-    query ProductsGetList {
-  products(first: 8, locales: en) {
+    query ProductsGetList($count: Int, $skip: Int) {
+  products(first: $count, skip: $skip, locales: en) {
     ...ProductGetProduct
   }
 }

@@ -1,5 +1,5 @@
 query CategoriesGetList {
-  categories {
+  categories(orderBy: name_ASC) {
     ...CategoryGetCateogry
   }
 }

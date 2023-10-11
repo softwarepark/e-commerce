@@ -14,20 +14,20 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query CategoriesGetList {\n  categories {\n    ...CategoryGetCateogry\n  }\n}": types.CategoriesGetListDocument,
+    "query CategoriesGetList {\n  categories(orderBy: name_ASC) {\n    ...CategoryGetCateogry\n  }\n}": types.CategoriesGetListDocument,
     "fragment CategoryGetCateogry on Category {\n  name\n  id\n  description\n  slug\n  ...CategoryImage\n  products {\n    id\n    name\n    descriptionShort\n    slug\n    ...ProductImage\n    price\n    categories {\n      name\n      id\n      slug\n    }\n    promotion\n  }\n}": types.CategoryGetCateogryFragmentDoc,
     "fragment CategoryImage on Category {\n  image {\n    id\n    url\n    width\n    height\n    alt\n  }\n}": types.CategoryImageFragmentDoc,
     "fragment ProductGetProduct on Product {\n  id\n  name\n  descriptionShort\n  slug\n  ...ProductImage\n  price\n  categories {\n    name\n    id\n    slug\n  }\n  promotion\n}": types.ProductGetProductFragmentDoc,
     "query ProductGetProductFromCategory($slug: String!) {\n  categories(where: {slug: $slug}, locales: en) {\n    ...CategoryGetCateogry\n  }\n}": types.ProductGetProductFromCategoryDocument,
     "query ProductGetSingleByID($id: ID) {\n  product(where: {id: $id}) {\n    ...ProductGetProduct\n  }\n}": types.ProductGetSingleByIdDocument,
     "fragment ProductImage on Product {\n  images {\n    url\n    alt\n    height\n    width\n  }\n}": types.ProductImageFragmentDoc,
-    "query ProductsGetList {\n  products(first: 8, locales: en) {\n    ...ProductGetProduct\n  }\n}": types.ProductsGetListDocument,
+    "query ProductsGetList($count: Int, $skip: Int) {\n  products(first: $count, skip: $skip, locales: en) {\n    ...ProductGetProduct\n  }\n}": types.ProductsGetListDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query CategoriesGetList {\n  categories {\n    ...CategoryGetCateogry\n  }\n}"): typeof import('./graphql').CategoriesGetListDocument;
+export function graphql(source: "query CategoriesGetList {\n  categories(orderBy: name_ASC) {\n    ...CategoryGetCateogry\n  }\n}"): typeof import('./graphql').CategoriesGetListDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -55,7 +55,7 @@ export function graphql(source: "fragment ProductImage on Product {\n  images {\
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetList {\n  products(first: 8, locales: en) {\n    ...ProductGetProduct\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
+export function graphql(source: "query ProductsGetList($count: Int, $skip: Int) {\n  products(first: $count, skip: $skip, locales: en) {\n    ...ProductGetProduct\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
 
 
 export function graphql(source: string) {

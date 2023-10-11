@@ -1,5 +1,5 @@
-query ProductsGetList {
-  products(first: 8, locales: en) {
+query ProductsGetList($count: Int, $skip: Int) {
+  products(first: $count, skip: $skip, locales: en) {
     ...ProductGetProduct
   }
 }
