@@ -8,6 +8,7 @@ export const executeGraphql = async <TResults, TVariables>(
     throw new Error("HYGRAPH_API_URL is not defined");
   const res = await fetch(process.env.HYGRAPH_API_URL, {
     method: "POST",
+    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${process.env.HYGRAPH_API_KEY}`,
