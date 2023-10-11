@@ -1,8 +1,9 @@
 import { getProductFromCategory } from "@/api/products";
 import { PageHeader } from "@/ui/molecules/PageHeader";
 import ProductList from "@/ui/organisms/ProductList";
+import { SectionProductList } from "@/ui/organisms/SectionProductList";
 import { notFound } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 const ProductFromCategoryPage = async ({
   params: { slug },
@@ -20,11 +21,12 @@ const ProductFromCategoryPage = async ({
   return (
     <section className="flex flex-col gap-14">
       <PageHeader category={category} />
-      {products.length > 0 ? (
-        <ProductList products={products} />
-      ) : (
-        <p>Product not found</p>
-      )}
+      <SectionProductList
+        addTitle={false}
+        title={category.name}
+        products={products}
+        numberOfItem={8}
+      />
     </section>
   );
 };

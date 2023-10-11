@@ -7,8 +7,11 @@ import {
 import { executeGraphql } from "./graphglApi";
 import { notFound } from "next/navigation";
 
-export const getAllProducts = async () => {
-  const graphQLResponse = await executeGraphql(ProductsGetListDocument, {});
+export const getAllProducts = async (count: number, skip: number) => {
+  const graphQLResponse = await executeGraphql(ProductsGetListDocument, {
+    count,
+    skip,
+  });
   const products = graphQLResponse.products;
   return products;
 };
@@ -38,6 +41,5 @@ export const getProductFromCategory = async (slug: string) => {
     }
   );
   const category = graphQLResponse.categories;
-
   return category;
 };
