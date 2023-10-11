@@ -1,13 +1,13 @@
 import React, { Suspense } from "react";
-import { CategoriesItemType } from "../types";
 import LoadingItems from "../molecules/LoadingItems";
 import { CategoryListItems } from "../molecules/CategoryListItems";
+import { CategoryGetCateogryFragment } from "@/gql/graphql";
 
 export const CategoriesList = ({
   categories,
   title,
 }: {
-  categories: CategoriesItemType[];
+  categories: CategoryGetCateogryFragment[];
   title: string;
 }) => {
   return (

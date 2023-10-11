@@ -1,14 +1,17 @@
 "use client";
 import Image from "next/image";
-import { Images } from "../types";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { ProductGetProductFragment } from "@/gql/graphql";
 
-export const ProductDetailsImage = ({ images }: { images: Images[] }) => {
+export const ProductDetailsImage = ({
+  images,
+}: {
+  images: ProductGetProductFragment["images"];
+}) => {
   return (
     <div className="relative flex h-96 lg:h-[36rem]">
       <Swiper
@@ -22,8 +25,8 @@ export const ProductDetailsImage = ({ images }: { images: Images[] }) => {
           <SwiperSlide key={index}>
             <Image
               src={image.url}
-              width={image.width}
-              height={image.height}
+              width={image.width || 0}
+              height={image.height || 0}
               alt={image.alt || "Zdjęcie produktu"}
               className="object-contain h-full mx-auto"
             />

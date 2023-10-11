@@ -10,12 +10,12 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const product = await getSingleProductById(params.id);
   return {
-    title: `${product.name} - ${formatMoney(product.price)}`,
-    description: `${product.descriptionShort}`,
+    title: `${product?.name} - ${formatMoney(product?.price ?? 0)}`,
+    description: `${product?.descriptionShort}`,
     openGraph: {
-      title: `${product.name} - ${formatMoney(product.price)}`,
-      description: `${product.descriptionShort}`,
-      images: [product.images[0]],
+      title: `${product?.name} - ${formatMoney(product?.price ?? 0)}`,
+      description: `${product?.descriptionShort}`,
+      images: [product.images[0]?.url ?? ""],
     },
   };
 };

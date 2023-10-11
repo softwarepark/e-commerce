@@ -5,3 +5,14 @@
 body {
   @apply bg-white;
 }
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background-color: #000 !important;
+  opacity: 1;
+  width: 27px;
+  height: 8px;
+  border-radius: 5px;
+}
+.swiper-pagination-bullet {
+  background-color: #000;
+  opacity: 0.7;
+}

@@ -1,0 +1,8 @@
+fragment ProductImage on Product {
+  images {
+    url
+    alt
+    height
+    width
+  }
+}

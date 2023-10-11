@@ -17,16 +17,12 @@ const menuItems = [
     path: "/categories",
   },
   {
-    label: "About",
-    path: "/about",
+    label: "T-shirts",
+    path: "/category/t-shirts",
   },
   {
-    label: "Contact",
-    path: "/contact",
-  },
-  {
-    label: "Admin",
-    path: "/admin",
+    label: "Hoodies",
+    path: "/category/hoodies",
   },
 ];
 

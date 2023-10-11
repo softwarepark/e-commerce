@@ -1,9 +1,9 @@
 import React from "react";
-import { ProductItemType } from "../types";
 import { formatMoney } from "../../utils";
+import { ProductGetProductFragment } from "@/gql/graphql";
 
 type ProductListItemDescriptionProps = {
-  product: ProductItemType;
+  product: ProductGetProductFragment;
 };
 
 const ProductListItemDescription = ({
@@ -14,7 +14,7 @@ const ProductListItemDescription = ({
       <div className="flex justify-between">
         <h3>{name}</h3>
         <p>
-          <span className="sr-only">Cena:</span> {formatMoney(price)}
+          <span className="sr-only">Cena:</span> {formatMoney(price || 0)}
         </p>
       </div>
       <ul className="flex">

@@ -1,0 +1,9 @@
+fragment CategoryImage on Category {
+  image {
+    id
+    url
+    width
+    height
+    alt
+  }
+}

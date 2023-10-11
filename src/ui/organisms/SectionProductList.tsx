@@ -1,14 +1,14 @@
 import React, { Suspense } from "react";
 import ProductList from "./ProductList";
-import { ProductItemType } from "../types";
 import LoadingItems from "../molecules/LoadingItems";
+import { ProductGetProductFragment } from "@/gql/graphql";
 
 export const SectionProductList = ({
   products,
   title,
   numberOfItem,
 }: {
-  products: ProductItemType[];
+  products: ProductGetProductFragment[];
   title: string;
   numberOfItem: number;
 }) => {

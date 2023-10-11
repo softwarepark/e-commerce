@@ -1,0 +1,5 @@
+query ProductGetProductFromCategory($slug: String!) {
+  categories(where: { slug: $slug }, locales: en) {
+    ...CategoryGetCateogry
+  }
+}

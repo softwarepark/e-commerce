@@ -1,9 +1,12 @@
 import React from "react";
-
-import { ProductItemType } from "../types";
 import ProductListItem from "../molecules/ProductListItem";
+import { ProductGetProductFragment } from "@/gql/graphql";
 
-const ProductList = ({ products }: { products: ProductItemType[] }) => {
+const ProductList = ({
+  products,
+}: {
+  products: ProductGetProductFragment[];
+}) => {
   return (
     <ul
       data-testid="products-list"

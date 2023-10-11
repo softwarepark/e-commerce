@@ -27,7 +27,9 @@ const ActiveLink = <T extends string>({
   }
 
   const isActive =
-    `${pathname.split("/")[1]}` === `${href.split("/")[1]}` && exact === false;
+    `${pathname.split("/")[1]}` == `${href.split("/")[1]}` && exact === false;
+
+  console.log(href, pathname, isActive);
 
   return (
     <Link

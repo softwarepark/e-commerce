@@ -1,0 +1,21 @@
+fragment CategoryGetCateogry on Category {
+  name
+  id
+  description
+  slug
+  ...CategoryImage
+  products {
+    id
+    name
+    descriptionShort
+    slug
+    ...ProductImage
+    price
+    categories {
+      name
+      id
+      slug
+    }
+    promotion
+  }
+}
